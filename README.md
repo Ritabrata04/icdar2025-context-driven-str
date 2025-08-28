@@ -10,28 +10,29 @@
 
 ---
 
-## 🔥 TL;DR
+## 🔥 Abstract 
 
-- **Training-free recognition**: combines full-image and block-crop recognitions with **contextual captions**.
-- **Fast & light**: **bypass** heavy spotters if the semantic+lexical confidence exceeds a threshold (τ).
-- **Modular & reproducible**: deterministic scoring, CSV logging, and minimal dependencies.
-- **Clean codebase**: small, focused modules; easy to extend with your own recognizers or captioners.
+Modern scene text recognition systems often depend on large
+end-to-end architectures that require extensive training and are pro-
+hibitively expensive for real-time scenarios. In such cases, the deploy-
+ment of heavy models becomes impractical due to constraints on mem-
+ory, computational resources, and latency. To address these challenges,
+we propose a novel, training-free plug-and-play framework that leverages
+the strengths of pre-trained text recognizers while minimizing redundant
+computations. Our approach uses context-based understanding and in-
+troduces an attention-based segmentation stage, which refines candidate
+text regions at the pixel level, improving downstream recognition. Instead
+of performing traditional text detection that follows a block-level com-
+parison between feature map and source image and harnesses contextual
+information using pretrained captioners, allowing the framework to gen-
+erate word predictions directly from scene context.Candidate texts are
+semantically and lexically evaluated to get a final score. Predictions that
+meet or exceed a pre-defined confidence threshold bypass the heavier pro-
+cess of end-to-end text STR profiling, ensuring faster inference and cut-
+ting down on unnecessary computations. Experiments on public bench-
+marks demonstrate that our paradigm achieves performance on par with
+state-of-the-art systems, yet requires substantially fewer resources.
 
----
-
-## 📖 Paper
-
-**A Lightweight Context-Driven Training-Free Network for Scene Text Segmentation and Recognition**  
-Ritabrata Chakraborty, Palaiahnakote Shivakumara, Umapada Pal, Cheng-Lin Liu  
-*ICDAR 2025 (Oral)*
-
-- **PDF**: see `overleaf/main.pdf` (provided by authors).  
-- **arXiv**: https://arxiv.org/abs/TBD (update once available).  
-- **Project Page**: TBD (update once live).
-
-If you use this work, please **cite us** (BibTeX below).
-
----
 
 ## 🏗️ Method Overview
 
@@ -219,56 +220,6 @@ python -m cli.main \
   --out_dir outputs/bench \
   --save_artifacts
 ```
-
----
-
-## 📊 Datasets (per paper)
-
-**Segmentation:** `COCO‑TS`, `ICDAR13 FST`, `TotalText`  
-**Recognition:** `ICDAR13`, `ICDAR15`, `TotalText`
-
-Example (from paper):
-| Dataset        | Train | Test  |
-|----------------|------:|------:|
-| COCO‑TS        | 43686 | 10000 |
-| ICDAR13 FST    |   229 |   233 |
-| TotalText      |  1255 |   300 |
-
-> See the paper for more detailed splits, metrics (IoU, F1), and recognition results.
-
----
-
-## 🧪 Reproducibility Checklist
-
-- **Determinism**: we set seeds and disable cudnn benchmarking in `pipeline/__init__.py`.
-- **Config immutability**: we recommend saving your resolved config to `outputs/*/config.resolved.yaml`.
-- **Pinned deps**: `requirements.txt` is provided; consider `pip freeze > requirements.lock` for archival.
-- **HF revisions**: optionally pin exact HF commits for BLIP‑2, MPNet, and recognizers via `revision:` keys.
-- **Hardware**: the paper used a single RTX GPU; BLIP‑2 can consume several GB — consider `flan‑t5‑xl` vs `xxl` variants.
-
----
-
-## 🔌 Optional: Heavy Fallback (DeepSolo/MMOCR)
-
-The fallback hook (`models/fallback_deepsolo.py`) is a stub; if you have MMOCR/DeepSolo installed, wire your inference call in `run_deepsolo_once(...)` and set:
-```yaml
-fallback:
-  use_deepsolo: true
-```
-
-The pipeline only calls the fallback when `max(C1, C3) < τ`, preserving speed on easy cases.
-
----
-
-## 📈 Expected Behavior (Paper)
-
-- Strong **mask IoU/F1** on segmentation benchmarks (AG‑UNet).
-- Competitive end‑to‑end recognition with **lower FLOPs** by **bypassing** heavy spotters whenever context confidence is high.
-- Robustness on cluttered scenes due to semantic guidance from BLIP‑2 captions.
-
-> Detailed tables and qualitative visualizations are available in the Overleaf `figures/` folder (e.g., architecture, dataset samples, failure cases). You can copy selected figures into a `docs/assets/` folder and embed them here.
-
----
 
 ## 📜 Citation
 
