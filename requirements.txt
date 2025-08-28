@@ -1,0 +1,11 @@
+numpy>=1.24
+opencv-python>=4.8
+pillow>=10.0
+torch>=2.1
+torchvision>=0.16
+transformers>=4.42
+accelerate>=0.30
+sentence-transformers>=2.7
+rapidfuzz>=3.7
+omegaconf>=2.3
+tqdm>=4.66
