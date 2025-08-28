@@ -30,6 +30,10 @@
 
 ---
 
+<p align="center">
+  <img src="Figures/TEASER_ICDAR-1.png" width="900" alt="Architecture Diagram">
+</p>
+
 ## 🔥 Abstract 
 
 Modern scene text recognition systems often depend on large end-to-end architectures that require extensive training and are prohibitively expensive for real-time scenarios. In such cases, the deployment of heavy models becomes impractical due to constraints on memory, computational resources, and latency. To address these challenges, we propose a novel, training-free plug-and-play framework that leverages the strengths of pre-trained text recognizers while minimizing redundant computations. Our approach uses context-based understanding and introduces an attention-based segmentation stage, which refines candidate text regions at the pixel level, improving downstream recognition. Instead of performing traditional text detection that follows a block-level comparison between feature map and source image and harnesses contextual information using pretrained captioners, allowing the framework to generate word predictions directly from scene context. Candidate texts are semantically and lexically evaluated to get a final score. Predictions that meet or exceed a pre-defined confidence threshold bypass the heavier process of end-to-end text STR profiling, ensuring faster inference and cutting down on unnecessary computations. Experiments on public benchmarks demonstrate that our paradigm achieves performance on par with state-of-the-art systems, yet requires substantially fewer resources.
@@ -43,7 +47,7 @@ Modern scene text recognition systems often depend on large end-to-end architect
 </p>
 
 <p align="center">
-  <img src="Figures/teaser.png" width="900" alt="Teaser Figure">
+  <img src="Figures/ICDAR_ARCHITECHTURE-1.png" width="900" alt="Teaser Figure">
 </p>
 
 - **Segmentation (AG-UNet)**: ResNet-50 encoder + attention-gated skips + BN bottleneck → foreground <strong>probability map</strong> → <strong>binary mask</strong>.
@@ -53,9 +57,7 @@ Modern scene text recognition systems often depend on large end-to-end architect
 - **Scoring**: MPNet cosine <strong>S1/S3</strong> + Levenshtein <strong>L1/L3</strong> → <strong>C = αS + βL</strong>; if <code>max(C1,C3) ≥ τ</code>, return the <strong>semantically stronger</strong> (higher S) between T1/T3; else <strong>fallback</strong>.
 - **Fallback**: Optional <strong>DeepSolo/MMOCR</strong> call only when needed.
 
-<p align="center">
-  <img src="Figures/architecture.png" width="900" alt="Architecture Diagram">
-</p>
+
 
 ---
 
