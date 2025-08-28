@@ -47,48 +47,7 @@ state-of-the-art systems, yet requires substantially fewer resources.
 - **Scoring**: MPNet cosine **S1/S3** + Levenshtein **L1/L3** → **C = αS + βL**; if `max(C1,C3) ≥ τ`, return the **semantically stronger** (higher S) between T1/T3; else **fallback**.
 - **Fallback**: Optional **DeepSolo/MMOCR** call only when needed.
 
-> The code in this repo exactly mirrors the paper’s pipeline and equations (α=0.6, β=0.4, τ=0.8 by default).
 
----
-
-## 🗂️ Repository Layout
-
-```
-- caption
-  - caption/blip2_captioner.py
-  - caption/init.py
-- cli
-  - cli/main.py
-- localize
-  - localize/init.py
-  - localize/mask_to_blocks.py
-- models
-  - models/fallback_deepsolo.py
-  - models/init.py
-  - models/recognizers.py
-  - models/segmenter.py
-  - models/unet_adv.py
-- pipeline
-  - pipeline/init.py
-  - pipeline/io_utils.py
-  - pipeline/runner.py
-- requirements.txt
-- scoring
-  - scoring/context_score.py
-  - scoring/init.py
-```
-
-- `models/` — AG‑UNet (`unet_adv.py`), segmenter wrapper, recognizers (TrOCR/Tesseract/PARSeq stub), optional DeepSolo hook.
-- `caption/` — BLIP‑2 captioner (medium‑length).
-- `localize/` — mask → blocks (connected components).
-- `scoring/` — MPNet + Levenshtein fusion.
-- `pipeline/` — runner + I/O helpers.
-- `cli/` — entrypoint for folder/CSV runs.
-- `requirements.txt` — pinned-ish dependencies.
-
-> **Note:** This repository ships core code. For configs and figures, see the sections below.
-
----
 
 ## 📦 Installation
 
