@@ -1,8 +1,8 @@
 # A Lightweight Context-Driven Training-Free Network for Scene Text Segmentation and Recognition
 
 [![Conference](https://img.shields.io/badge/ICDAR-2025%20Oral-blueviolet)](https://icdar2025.org/)
-[![arXiv](https://img.shields.io/badge/arXiv-TBD-B31B1B.svg)](https://arxiv.org/abs/TBD)
-[![Project Page](https://img.shields.io/badge/Project%20Page-TBD-1f6feb)](TBD)
+[![arXiv](https://img.shields.io/badge/arXiv-TBD-B31B1B.svg)](https://https://arxiv.org/abs/2503.15639)
+[![Project Page](https://img.shields.io/badge/Project%20Page-TBD-1f6feb)]([TBD](https://ritabrata04.github.io/Context-driven-STR/))
 [![Python](https://img.shields.io/badge/python-3.10%2B-3776AB.svg?logo=python&logoColor=white)](#)
 [![License](https://img.shields.io/badge/license-MIT-green)](#license)
 
