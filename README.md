@@ -144,41 +144,6 @@ fallback:
   use_deepsolo: false
 ```
 
----
-
-## 🚀 Quick Start
-
-### A) Folder Mode (demo on a directory of images)
-```bash
-python -m cli.main \
-  --config configs/run_presets/demo_folder.yaml \
-  --images path/to/images \
-  --out_dir outputs/demo \
-  --save_artifacts
-```
-
-Writes:
-- `outputs/demo/results.csv` — per‑image T1/T3/T2 and scores (S/L/C), decision, latency.
-- `outputs/demo/masks/*_mask.png` — segmentation masks.
-- `outputs/demo/crops/*_crop{i}.png` — top‑K block crops.
-- `outputs/demo/debug/*_boxes.png` — overlays of block boxes.
-
-### B) CSV Mode (optionally with ground truth)
-Prepare a CSV with rows:
-```
-/abs/path/image_0001.jpg, hello world
-/abs/path/image_0002.jpg, example
-/abs/path/image_0003.jpg
-```
-
-Run:
-```bash
-python -m cli.main \
-  --config configs/run_presets/demo_folder.yaml \
-  --dataset_csv path/to/list.csv \
-  --out_dir outputs/bench \
-  --save_artifacts
-```
 
 ## 📜 Citation
 
@@ -188,27 +153,5 @@ python -m cli.main \
   author    = {Chakraborty, Ritabrata and Shivakumara, Palaiahnakote and Pal, Umapada and Liu, Cheng-Lin},
   booktitle = {Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)},
   year      = {2025},
-  note      = {Oral},
-  eprint    = {arXiv:TBD}  % update when available
 }
-```
-
----
-
-## 📎 Add Figures (optional)
-
-Copy any of these from your Overleaf zip into this repo (e.g., `docs/assets/`) and reference in the README:
-
-- `figures/ICDAR_ARCHITECHTURE.pdf` (architecture)
-- `figures/TEASER_ICDAR.pdf` (teaser)
-- `figures/dataset_qualitative.pdf` (dataset samples)
-- `figures/failure_cases.png` (failure modes)
-
-Example embed (after copying & converting PDFs to PNGs):
-
-```markdown
-<p align="center">
-  <img src="docs/assets/architecture.png" width="800" alt="Architecture">
-</p>
-```
 
