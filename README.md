@@ -184,8 +184,6 @@ fallback:
   use_deepsolo: false
 ```
 
-> If you **don’t** have our AG‑UNet checkpoint (`segmenter.ckpt`), you can still run the pipeline — but mask quality will be poor, which will reduce T3 effectiveness. For best results, plug in a trained checkpoint (contact authors). Alternatively, set `localize.nmax: 0` to skip crop‑based recognition.
-
 ---
 
 ## 🚀 Quick Start
@@ -304,23 +302,3 @@ Example embed (after copying & converting PDFs to PNGs):
 </p>
 ```
 
----
-
-## 🧩 Extend / Customize
-
-- Swap captioner (e.g., BLIP‑2 → Llava) by adding a new module under `caption/` and updating the config.
-- Add a recognizer adapter (e.g., ABINet, ViTSTR) to `models/recognizers.py`.
-- Change scoring weights (α, β) or τ in the config for your domain.
-
----
-
-## 🪪 License
-
-This repository is released under the **MIT License** (add a `LICENSE` file if not present).  
-© 2025 The authors. All rights reserved where applicable.
-
----
-
-## 🙌 Acknowledgments
-
-We thank the ICDAR community and our institutions for feedback and support. BLIP‑2, Sentence‑Transformers, and TrOCR are used under their respective licenses.
